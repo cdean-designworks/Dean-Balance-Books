@@ -1,0 +1,405 @@
+:root {
+  --primary: #063997;        /* slightly softer blue */
+  --primary-dark: #041d61;
+  --accent: #4677ffce;         /* friendlier green */
+  --light: #e5f1fd;
+  --dark: #1f2937;
+  --gray: #6b7280;
+}
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background:var(--primary);
+  box-shadow: 0 2px 10px var(--primary);
+  border-bottom: 1px solid var(var(--primary));
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 40px;
+  gap: 200px;                 /* ← reduced a lot to pull menu closer */
+}
+
+.logo {
+  width: 360px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 3.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1;             /* Keeps it centered in the remaining space */
+}
+
+.nav-links li a {
+  color: #00258b;
+  text-decoration: none;
+  font-weight: 550;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--primary);
+}
+
+/* Underline hover effect (optional, keep or remove) */
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+/* Mobile menu toggle & styles remain the same */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    box-shadow: 0 8px 16px #0000001a;
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+  /* Hamburger animation */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
+  color: var(--dark);
+  background: var(--light);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--light) 100%);
+  color: #ffffff;
+  padding: 120px 0 90px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, #ffffff2e 0%, transparent 70%);
+  animation: gentle-pulse 15s infinite alternate;
+}
+
+@keyframes gentle-pulse {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.1; transform: scale(1.15); }
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6.5vw, 4.8rem);
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.5px;
+}
+
+.lead {
+  font-size: 1.35rem;
+  max-width: 720px;
+  margin: 0 auto 2.8rem;
+  opacity: 0.95;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px #3769f3;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px #2055e9;
+  background: #3769f3;
+}
+
+.btn-primary {
+  background: var(--primary);
+  box-shadow: 0 4px 16px #50bfffa6;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 8px 24px #51bfff;
+}
+
+/* Sections */
+section {
+  padding: 90px 0;
+}
+
+h2 {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--primary-dark);
+}
+
+/* Services */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: white;
+  padding: 2.2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  font-size: 1.55rem;
+  margin: 1.1rem 0 0.9rem;
+  color: var(--primary);
+}
+
+.list {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-left: 1.4rem;
+}
+
+
+/* About & Contact */
+.intro-text {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px #ffffff;
+  text-align: center;
+}
+
+.cta-buttons {
+  text-align: center;
+}
+
+.cta-buttons .btn {
+  margin: 0.6rem 1.2rem;
+}
+
+/* Footer */
+footer {
+  background: var(--primary-dark);
+  color: #ffffff;
+  text-align: center;
+  padding: 60px 0 40px;
+}
+
+.footer-logo {
+  font-size: 1.9rem;
+  margin-bottom: 1.2rem;
+  color: var(--light)
+}
+
+.contact-info {
+  margin: 1.8rem 0;
+  font-size: 1.05rem;
+}
+
+.copyright {
+  margin-top: 2.5rem;
+  opacity: 0.75;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header { padding: 90px 0 70px; }
+  h1 { font-size: 3.2rem; }
+  .lead { font-size: 1.2rem; }
+  section { padding: 60px 0; }
+  h2 { font-size: 2.2rem; }
+  .cta-buttons .btn { display: block; margin: 1rem auto; max-width: 300px; }
+}
+/* ============================================= */
+/* Logo pinned to top-left corner                */
+/* ============================================= */
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  background: #ffffff;       
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 245px;                /* adjust size to taste */
+  height: auto;
+  z-index: 10;
+  margin: 0;
+}
+
+/* Make space for the logo so menu doesn't overlap it */
+.nav-content {
+  padding-left: 200px;         /* ← increase if logo is wider */
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;   /* menu links go to the right */
+}
+
+/* Optional – better on mobile */
+@media (max-width: 768px) {
+  .logo {
+    width: 140px;
+  }
+  .nav-content {
+    padding-left: 160px;
+    justify-content: space-between;
+  }
+}
+/* Ready to Get Started section */
+.cta-wrapper {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 18px 36px;
+  background-color: #0066ff;     /* Change to your preferred color */
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0052cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+}
+/* Ready to Get Started section */
+.ready-section {
+  text-align: center;
+  max-width: 700px;           /* Prevents text from becoming too wide on large screens */
+  margin: 60px auto;          /* Centers the whole block and adds nice spacing */
+}
+
+.ready-section h2 {
+  margin-bottom: 20px;
+}
+
+.ready-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.cta-wrapper {
+  margin: 40px 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 18px 36px;
+  background-color: #0066ff;
+  color: white;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0052cc;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 102, 255, 0.25);
+}
